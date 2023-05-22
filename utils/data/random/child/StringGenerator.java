@@ -55,4 +55,12 @@ public class StringGenerator extends BaseAbstractGenerator<String> {
         return sb.toString();
     }
 
+    public String randomString(int length){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append(LOWER_CASE[random.nextInt(LOWER_CASE.length)]);
+        }
+        return sb.toString();
+    }
+
 }

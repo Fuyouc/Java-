@@ -194,9 +194,12 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 
     @Override
     public void clear() {
-        head = null;
-        last = null;
-        size = 0;
+        if (!isEmpty()) {
+            head.next = null;
+            head = null;
+            last = null;
+            size = 0;
+        }
     }
 
     @Override

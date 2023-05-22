@@ -8,4 +8,8 @@ public abstract class AbstractQueue<E> implements Queue<E>{
         return this.size;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
 }

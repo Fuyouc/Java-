@@ -6,6 +6,10 @@ import utils.objects.ObjectUtils;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * 动态数组
+ * @param <E>
+ */
 public class ArrayList<E> extends AbstractList<E> {
 
     /**

@@ -27,9 +27,33 @@ public interface List<E> extends Collection<E> {
     E get(int index);
 
     /**
+     * 元素是否存在
+     * @param element
+     */
+    boolean contains(E element);
+
+    /**
      * 反转集合
      */
     void reversal();
+
+    /**
+     * 元素个数
+     */
+    int size();
+
+    /**
+     * 集合是否为空
+     * @return
+     */
+    default boolean isEmpty(){
+        return size() == 0;
+    }
+
+    /**
+     * 清空集合
+     */
+    void clear();
 
     static <E> List<E> of(E... objects){
         return CollectionConstructor.buildList(objects);

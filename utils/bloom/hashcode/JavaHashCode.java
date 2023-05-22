@@ -1,7 +1,7 @@
 package utils.bloom.hashcode;
 
 
-import JAVA_Collection_Framework.utils.bloom.BloomHashCode;
+import utils.bloom.BloomHashCode;
 
 public class JavaHashCode implements BloomHashCode {
     @Override

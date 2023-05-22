@@ -4,9 +4,12 @@ import utils.collection.list.List;
 import utils.collection.set.Set;
 import utils.collection.set.child.BinarySearchTreeSet;
 import utils.collection.set.child.TrieSet;
+import utils.collection.tree.prefix.PrefixTree;
+import utils.collection.tree.prefix.child.StringPrefixSearchTree;
 import utils.objects.ObjectUtils;
 
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
 public class Collections {
 
@@ -33,5 +36,9 @@ public class Collections {
         return set;
     }
 
+    public static PrefixTree defaultPrefixTree(){
+
+        return new StringPrefixSearchTree();
+    }
 
 }

@@ -22,6 +22,7 @@ public class SingleLinkedList<E> extends AbstractList<E> {
     }
 
     private Node<E> head;
+    private Node<E> last;
 
     @Override
     public boolean add(E element) {
@@ -29,10 +30,10 @@ public class SingleLinkedList<E> extends AbstractList<E> {
         Node<E> newNode = new Node<>(element,null);
         if (isEmpty()){
             head = newNode;
+            last = head;
         }else {
-            Node<E> node = head;
-            while (node.next != null) node = node.next;
-            node.next = newNode;
+            last.next = newNode;
+            last = newNode;
         }
         ++size;
         return true;
@@ -42,19 +43,24 @@ public class SingleLinkedList<E> extends AbstractList<E> {
     public boolean remove(E element) {
         if (isEmpty() || ObjectUtils.isEmpty(element)) return false;
         Node<E> node = head,pre = null;
-        while (node.next != null){
+        while (node != null){
             if (element.equals(node.element)){
-                //如果找到需要删除的节点
-                if (node == head){
-                    //如果删除的节点是头结点
-                    head = null;
-                }else {
-                    if (node.next != null){
-                        //如果删除的节点后面还有节点
-                        pre.next = node.next;
+                if (pre == null){
+                    //删除的是头结点
+                    if (last == head){
+                        //如果只有一个头结点，直接删除即可
+                        head = null;
+                        last = null;
                     }else {
-                        //删除的是末尾节点
+                        Node<E> temp = head;
+                        head = head.next;
+                        temp.next = null;
+                    }
+                }else {
+                    if (node.next != null) pre.next = node.next;
+                    else {
                         pre.next = null;
+                        last = pre;
                     }
                 }
                 --size;
@@ -69,9 +75,23 @@ public class SingleLinkedList<E> extends AbstractList<E> {
     @Override
     public E remove(int index) {
         if (index >= size) return null;
-        Node<E> removeNode = head;
-        Node<E> pre = null;
-        for (int i = 0; i < index; ++i){
+
+        if (index == 0){
+            --size;
+            E removeE = head.element;
+            if (head.next != null){
+                head = head.next;
+            }else {
+                head = null;
+                last = null;
+            }
+            return removeE;
+        }
+
+        Node<E> pre = head;
+        Node<E> removeNode = pre.next;
+
+        for (int i = 1; i < index; ++i){
             pre = removeNode;
             removeNode = removeNode.next;
         }
@@ -79,6 +99,7 @@ public class SingleLinkedList<E> extends AbstractList<E> {
             pre.next = removeNode.next;
         }else {
             pre.next = null;
+            last = pre;
         }
         --size;
         return removeNode.element;

@@ -69,8 +69,8 @@ public interface Collection<E> {
         return true;
     }
 
-    default E[] toArray(){
-        E[] e = (E[]) new Object[size()];
+    default Object[] toArray(){
+        Object[] e = new Object[size()];
         Iterator<E> iterator = iterator();
         int index = 0;
         while (iterator.hasNext()){

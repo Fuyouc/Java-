@@ -9,7 +9,7 @@
 # 树形结构
 
 - **二叉搜索树：**`BinarySearchTreeMap`
-- **前缀树：**`SuffixTree(可高效匹配前缀字符串)`
+- **前缀树：**`PrefixTree(可高效匹配前缀字符串)`
 - **堆：**`PriorityQueue`
 
 # 图
@@ -22,4 +22,5 @@
 - **布隆过滤器：**`BloomFilter(基于位运算实现的布隆过滤器，采用布隆公式动态创建数组大小)`
 - **数据生成器：**`StringGenerator(字符串生成器) & IntegerGenerator(Int数据生成器)`
 - **哈希表：**`HasTable`
+- **稀疏数组：**`SparseArray`
 

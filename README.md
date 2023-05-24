@@ -6,16 +6,25 @@
 - **栈：**`LinkedStack（基于双向链表实现）`
 - **队列：**`LinkedQueue(基于双向链表实现)、PriorityQueue(优先队列，基于最大|最小堆实现)`
 
+
+
 # 树形结构
 
 - **二叉搜索树：**`BinarySearchTreeMap`
 - **前缀树：**`PrefixTree(可高效匹配前缀字符串)`
-- **堆：**`PriorityQueue`
+  - **单词查找树**：`Trie`，用于高效匹配字符单词（只能存储字符）
+  - **字符串查找树**：`StringPrefixSearchTree`，在`Trie`的基础上进行了增强，允许存储任意类型的字符串来进行查找
+- **堆：**
+  - **二叉堆：**`PriorityQueue（优先队列)`
+
+
 
 # 图
 
 - **无向图：**`UndirectedGraph（无向图的实现，无向图属于特殊的有向图，内部实现最短路径算法）`
-- **并查集：**`UnionFindSet(优化过的并查集，方便开发期间使用)`
+- **并查集：**`UnionFindSet(该并查集已经进行扩展，方便开发期间使用)`
+
+
 
 # 其他
 
@@ -23,4 +32,6 @@
 - **数据生成器：**`StringGenerator(字符串生成器) & IntegerGenerator(Int数据生成器)`
 - **哈希表：**`HasTable`
 - **稀疏数组：**`SparseArray`
+  - `ArrayListSparseArray`：使用数组实现的稀疏数组
+  - `LinkedSparseArray`：使用链表实现的稀疏数组
 

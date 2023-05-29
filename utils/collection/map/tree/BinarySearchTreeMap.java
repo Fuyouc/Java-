@@ -150,14 +150,4 @@ public class BinarySearchTreeMap<K,V> extends AbstractTreeMap<K,V> {
         size = 0;
     }
 
-    @Override
-    public Set<Entry<K, V>> entrySet() {
-        Set<Map.Entry<K,V>> objectSet = CollectionConstructor.buildSet();
-        Iterator<Entry<K, V>> iterator = iterator();
-        while (iterator.hasNext()){
-            objectSet.add(iterator.next());
-        }
-        return objectSet;
-    }
-
 }

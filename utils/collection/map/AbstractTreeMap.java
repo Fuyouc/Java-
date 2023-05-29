@@ -17,22 +17,9 @@ import java.util.Queue;
  * @param <K>
  * @param <V>
  */
-public abstract class AbstractTreeMap<K,V> implements Map<K,V>, BinaryTreeInfo {
-
-    protected Comparator<K> comparator;
-
-    protected int size;
+public abstract class AbstractTreeMap<K,V> extends AbstractMap<K,V> implements BinaryTreeInfo {
 
     protected Node<K,V> root;
-
-    public AbstractTreeMap() {
-        this(null);
-    }
-
-    public AbstractTreeMap(Comparator<K> comparator) {
-        this.comparator = comparator;
-    }
-
 
     @Override
     public Object root() {
@@ -104,17 +91,6 @@ public abstract class AbstractTreeMap<K,V> implements Map<K,V>, BinaryTreeInfo {
         }else return node;
         while (node.left != null) node = node.left;
         return node;
-    }
-
-    @Override
-    public boolean putAll(Map<? extends K, ? extends V> map) {
-        Iterator<? extends Entry<? extends K, ? extends V>> iterator = map.iterator();
-        if (ObjectUtils.isEmpty(iterator)) return false;
-        while (iterator.hasNext()){
-            Entry<? extends K, ? extends V> entry = iterator.next();
-            put(entry.getKey(),entry.getValue());
-        }
-        return true;
     }
 
     protected static class Node<K,V>{
@@ -255,58 +231,9 @@ public abstract class AbstractTreeMap<K,V> implements Map<K,V>, BinaryTreeInfo {
         @Override
         public Entry<K, V> next() {
             Node<K, V> node = queue.poll();
-            return new TreeEntry<>(node.key,node.value);
-        }
-    }
-
-    private static class TreeEntry<K,V> implements Map.Entry<K,V>,Comparable<TreeEntry<K,V>>{
-        K key;
-        V value;
-
-        public TreeEntry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        @Override
-        public K getKey() {
-            return key;
-        }
-
-        @Override
-        public V getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return "Key：" + getKey() + ",Value：" + getValue();
-        }
-
-        @Override
-        public int compareTo(TreeEntry<K, V> o) {
-            return ((Comparable)key).compareTo(o.key);
+            return new MapEnter<>(node.key,node.value);
         }
     }
 
 
-    @Override
-    public Set<K> keySet() {
-        Iterator<Entry<K, V>> iterator = iterator();
-        Set<K> objectSet = CollectionConstructor.buildSet();
-        while (iterator.hasNext()){
-            objectSet.add(iterator.next().getKey());
-        }
-        return objectSet;
-    }
-
-    @Override
-    public Collection<V> values() {
-        Iterator<Entry<K, V>> iterator = iterator();
-        List<V> objectSet = CollectionConstructor.buildList();
-        while (iterator.hasNext()){
-            objectSet.add(iterator.next().getValue());
-        }
-        return objectSet;
-    }
 }

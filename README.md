@@ -3,6 +3,7 @@
 - **动态数组：·**`ArrayList`
 - **单向链表：**`SingleLinkedList`
 - **双向链表：**`DoubleLinkedList`
+- **跳跃列表：**`SkipLinkedListMap(时间复杂度与红黑树接近)`
 - **栈：**`LinkedStack（基于双向链表实现）`
 - **队列：**`LinkedQueue(基于双向链表实现)、PriorityQueue(优先队列，基于最大|最小堆实现)`
 

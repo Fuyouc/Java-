@@ -3,7 +3,16 @@
 - **动态数组：·**`ArrayList`
 - **单向链表：**`SingleLinkedList`
 - **双向链表：**`DoubleLinkedList`
-- **跳跃列表：**`SkipLinkedListMap(时间复杂度与红黑树接近)`
+- **跳跃列表：**
+  - `SkipLinkedListMap`：基于跳表实现的Map
+  - `SkipLinkedList`：**基于跳表实现的有序列表（允许重复元素），在进行范围操作时，效率极高**
+    - **支持以下功能：**
+      - `范围删除`
+      - `范围查找`
+      - `获取比指定元素大的元素列表`
+      - `获取比指定元素小的元素列表`
+      - `获取列表中最大的元素`
+      - `获取列表中最小的元素`
 - **栈：**`LinkedStack（基于双向链表实现）`
 - **队列：**`LinkedQueue(基于双向链表实现)、PriorityQueue(优先队列，基于最大|最小堆实现)`
 

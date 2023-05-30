@@ -380,6 +380,16 @@ public class SkipLinkedListMap<K,V> extends AbstractMap<K,V> {
                 //被删除的节点
                 Node<K,V> removeNode = currentIndex.right.node;
 
+                /**
+                 * 修复正确的删除节点
+                 */
+                while (removeNode.next != null) {
+                    if (compare(key,removeNode.key) == 0){
+                        break;
+                    }
+                    removeNode = removeNode.next;
+                }
+
                 //由于是在索引层找到，所以还需要精确确定到删除节点的上一个节点
                 while (preNode.next != removeNode) preNode = preNode.next;
 
@@ -396,11 +406,16 @@ public class SkipLinkedListMap<K,V> extends AbstractMap<K,V> {
             }
         }
 
-        /**
-         * 能来到这里，说明删除的节点并不是一个索引层的节点
-         * 获取当前索引
-         */
-        Node<K, V> preNode = currentIndex.node;
+        Node<K, V> preNode = null;
+        if (currentIndex.node != null) {
+            /**
+             * 能来到这里，说明删除的节点并不是一个索引层的节点
+             * 获取当前索引
+             */
+            preNode = currentIndex.node;
+        }else {
+            preNode = headLast.node;
+        }
 
         //这里就是采用列表的方式查找删除了
         while (preNode.next != null){
@@ -465,7 +480,7 @@ public class SkipLinkedListMap<K,V> extends AbstractMap<K,V> {
     /**
      * 范围查找（查找start-end之间的范围数据）
      */
-    public List<Map.Entry<K,V>> rangeSearch(K start,K end){
+    public List<Entry<K,V>> rangeSearch(K start, K end){
         if (compare(start,end) > 0){
             //如果end > start,交换两个顺序
             K temp = start;
@@ -477,7 +492,7 @@ public class SkipLinkedListMap<K,V> extends AbstractMap<K,V> {
 
         if (ObjectUtils.isEmpty(startNode) || ObjectUtils.isEmpty(endNode)) return null;
 
-        List<Map.Entry<K,V>> list = new ArrayList<>();
+        List<Entry<K,V>> list = new ArrayList<>();
 
         while (startNode != null && startNode.next != endNode){
             list.add(new MapEnter<>(startNode.key, startNode.value));
